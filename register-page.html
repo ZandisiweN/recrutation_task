@@ -311,7 +311,8 @@
 
 #testimonials-carousel > .carousel-indicators > li {
     display: inline-block;
-    width: calc(100% / 4 - 50px);
+    /* the parent element (carousel-indicators) contains 5 elements, and by dividing the total width of the parent element by 5, each element or list item(li) would be allocated an equal potion of that width */
+    width: calc(100% / 5 - 50px);
     height: 0.6rem;
     margin: 20px;
     text-indent: -999px;
@@ -323,7 +324,8 @@
 
 #testimonials-carousel .carousel-indicators .active {
     display: inline-block;
-    width: calc(100% / 4 - 50px);
+     /* the parent element (carousel-indicators) contains 5 elements, and by dividing the total width of the parent element by 5, each element or list item(li) would be allocated an equal potion of that width */
+    width: calc(100% / 5 - 50px);
     height: 0.6rem;
     margin: 20px;
     text-indent: -999px;
@@ -840,6 +842,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
     <li data-target="#testimonials-carousel" data-slide-to="1"></li>
     <li data-target="#testimonials-carousel" data-slide-to="2"></li>
     <li data-target="#testimonials-carousel" data-slide-to="3"></li>
+    <li data-target="#testimonials-carousel" data-slide-to="4"></li> <!--added another list of indicators with an index of 4 to the "data-slide-to" atribute which specifies that this list item links to the fifth slide in the carousel  -->
   </ol>
 
   <div class="carousel-inner">
@@ -922,6 +925,31 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
           <div class="testimonials-picture-name">
             <h2>Latarasa Abdelmalek</h2>
             <p>Monitoring and Performance Consultant</p>
+          </div>
+        </div>
+     </div>
+    </div>
+
+    <!--added another div with the class of item to contain the 4th testimonial-->
+    <div class="item">
+     <div class="testimonials-quote-wrap">
+      <div class="testimonials-quote-element">
+        <div class="testimonials-quote">
+          <!--Changed the content inside the p tag-->
+          <p>This is a place where you’ll find the answers you are looking for and meet other users and Dynatrace experts. Ask questions, vote for product ideas, suggest new features, share tips and tricks, participate in challenges, share feedback, and most importantly -- have fun!</p>
+          <img class="testimonial-quote-mark-1" src="https://community.dynatrace.com/html/assets/quote_black.png">
+          <img class="testimonial-quote-mark-2" src="https://community.dynatrace.com/html/assets/quote_black.png">
+        </div>
+      </div>
+        <div class="testimonials-picture">
+          <div class="testimonials-picture-avatar">
+            <!-- changed the picture/avatar -->
+            <img src="https://community.dynatrace.com/t5/image/serverpage/image-id/55i2A0C86DDC8A9681A/image-dimensions/150x150/image-coordinates/0%2C0%2C240%2C240/constrain-image/false?v=v2"></img>
+          </div>
+          <div class="testimonials-picture-name">
+            <!-- Changed the testimonials-picture-name -->
+            <h2>MaciejNeumann</h2>
+            <p>Community Team</p>
           </div>
         </div>
      </div>
