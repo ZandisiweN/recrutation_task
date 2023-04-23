@@ -105,13 +105,14 @@
     height: 3px;
     width: 80%;
 }
-
+/* flex container */
 .benefits-content-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
+/* flex item */
 .benefits-content-list-element {
     width: calc(100% / 6);
     display: flex;
@@ -121,14 +122,27 @@
     min-width: min-content;
 }
 
+/* media query for 900px breakpoint */
+/* the css rule will only apply to devices whose maximum viewport width is 900
+pixels or less */
+@media screen and (max-width: 900px) {
+.benefits-content-list-element{
+  width: calc(100% / 3); 
+}
+}
+
 .benefits-content-list-icon {
     padding-bottom: 10px;
 }
 
 .benefits-content-list-icon > img {
     height: 60px;
+    
 }
-
+/*On hover the transform property will scale the icon element up by 20% on the x and y axis  */
+.benefits-content-list-icon > img:hover{
+  transform: scale(1.2);
+}
 .benefits-content-list-description, .benefits-content-list-description-blue {
     font-style: normal;
     font-weight: 300;
@@ -680,10 +694,8 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
     opacity: 1;
 }
 
-
-
-
 </style>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet preconnect" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
