@@ -233,7 +233,11 @@ pixels or less */
    font-weight: 300;
    justify-content: center;
 }
+.google-map-button{
+  padding-top: 20px;
+  margin:auto;
 
+}
 /*Join page - Testimonials component*/
 
 .testimonials-wrapper {
@@ -259,6 +263,26 @@ pixels or less */
    flex-direction: row;
    padding: 10px 5px;
    min-height: 355px;
+}
+
+/* This code is a media query that applies styling changes to elements with specific classes on screens with a maximum width of 768 pixels.To make the carousel responsive */
+
+@media screen and (max-width:768px){
+  .testimonials-quote-wrap {
+    flex-direction: column-reverse;
+  }
+  .testimonials-picture, .testimonials-quote-element{
+  margin-inline: auto
+  }
+
+  .testimonials-picture{
+    margin-bottom:20px;
+  }
+
+  .testimonials-picture-name > h2, .testimonials-picture-name > p{
+    margin-inline: auto;
+    text-align: center;
+    }
 }
 
 .testimonials-quote-element {
@@ -569,6 +593,7 @@ pixels or less */
     border: 2px solid #FFFFFF;
     color: #FFFFFF;
 }    
+
     
 .lia-button-forth:hover {
         background: #FFFFFF;
@@ -621,6 +646,15 @@ a.lia-button-link-new.lia-button-link-new-black, a.lia-button-link-new.lia-butto
     text-decoration: none;
 }
 
+a.lia-button-link-new.lia-button-link-new-violet, a.lia-button-link-new.lia-button-link-new-violet:focus{
+  color: #8F00FF ;
+    margin: 0px;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    text-decoration: none;
+}
+
 .lia-button-link-new:before {
     content: "";
     display: block;
@@ -646,7 +680,7 @@ a.lia-button-link-new.lia-button-link-new-black, a.lia-button-link-new.lia-butto
     box-sizing: inherit;
 }
 
-.lia-button-link-new-blue:before, .lia-button-link-new-blue:after, .lia-button-link-new-black:before, .lia-button-link-new-black:after {
+.lia-button-link-new-blue:before, .lia-button-link-new-blue:after, .lia-button-link-new-black:before, .lia-button-link-new-black:after,  .lia-button-link-new-violet:before, .lia-button-link-new-violet:after {
     bottom: 4px;
 }
 
@@ -673,10 +707,16 @@ span.lia-button-link-arrow.lia-button-link-arrow-blue {
     top: 12px;
     right: 12px;
     height: 8px;
+    
 }
 
 span.lia-button-link-arrow.lia-button-link-arrow-black {
     content:url("https://community.dynatrace.com/html/assets/arrow-right-black.svg");
+    top: 12px;
+    right: 12px;
+    height: 8px;
+}
+span.lia-button-link-arrow.lia-button-link-arrow-violet {
     top: 12px;
     right: 12px;
     height: 8px;
@@ -686,7 +726,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
     right: 4px;
 }
 
-.lia-button-link-new-blue:hover .lia-button-link-arrow, .lia-button-link-new-black:hover .lia-button-link-arrow {
+.lia-button-link-new-blue:hover .lia-button-link-arrow, .lia-button-link-new-black:hover .lia-button-link-arrow, .lia-button-link-new-violet:hover .lia-button-link-arrow {
     right: 8px;
 }
 
@@ -837,6 +877,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-black {
         <p><b>Hundreds</b><br> of companies</p>
       </div>
     </div>
+  
   </div>
 </div>
 
