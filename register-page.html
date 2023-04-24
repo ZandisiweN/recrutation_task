@@ -720,6 +720,7 @@ span.lia-button-link-arrow.lia-button-link-arrow-violet {
     top: 12px;
     right: 12px;
     height: 8px;
+    
 }
 
 .lia-button-link-new:hover .lia-button-link-arrow {
@@ -877,8 +878,23 @@ span.lia-button-link-arrow.lia-button-link-arrow-violet {
         <p><b>Hundreds</b><br> of companies</p>
       </div>
     </div>
-  
+
+    <!-- Add a google map button -->
+
+    <div class="google-map-button">
+      <!-- copied the button styles for the new blue and new black link buttons and added a lia-button-link-new-violet class with a different color of violet -->
+      <a class="lia-button-link-new lia-button-link-new-violet"
+        href="https://www.google.com/maps"
+        style="font-size: 18px">Google map
+          
+        <!-- added the arrow and changed the fill of the svg to violet -->
+        <svg class="lia-button-link-arrow" style="top: 12px; right:8px;" width="20" height="10">
+          <path d="M 2 6 H 12 L 9 8 H 11.5 L 16 5 L 11.5 2 H 9 L 12 4 H 0.5 V 6 Z" fill="rgb(143, 0, 255)" stroke-width="0.1"/>
+        </svg>
+     </a>
+    </div>
   </div>
+  
 </div>
 
 <div class="testimonials-wrapper">
