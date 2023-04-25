@@ -7,13 +7,22 @@
 <#assign sorting = http.request.parameters.name.get("sort", "") />
  
 <#-- page size -->
+<#--  We want to make the 'pageSize' value always 30 and ignore the 'pageSizeUser' value so here we can just assign the variable pageSize to 30 and call it a day -->
+
+<#assign pageSize = 30> 
+
+<#--  This will set the pageSize variable to 30, regardless of whether the user is registered or what their pageSizeUser value is.  -->
+
+<#--  So we can ignore this block of code below -->
 <#assign pageSize = coreNode.settings.name.get("layout.messages_per_page_linear", "10")?number />
+                                    
 <#if user.registered>
    <#assign pageSizeUser = settings.name.get("layout.messages_per_page_linear") />
    <#if pageSizeUser?number != pageSize?number>
        <#assign pageSize = pageSizeUser />
    </#if>
 </#if>
+
  
 <#if webuisupport.path.parameters.name.get("label-name")??>
    <#assign label = webuisupport.path.parameters.name.get("label-name").getText() />
@@ -44,6 +53,28 @@
    <#case "replies">
        <#assign orderClause = "ORDER BY replies.count(*) DESC " />
    <#break>
+   <#-- Post-time from lowest to newest - This will sort the messages by their post time in descending order, with the newest posts appearing first. -->
+   <#case "post_time">
+       <#assign orderClause = "ORDER BY post_time DESC " />
+   <#break>
+   <#-- The lowest number of Kudos - This would order the results by the sum of kudos in ascending order, so the posts with the lowest number of kudos would appear first in the results.   -->
+   <#case "lowest_Kudos">
+       <#assign orderClause = "ORDER kudos.sum(weight) ASC " />
+   <#break>
+
+   <#-- Unanswered questions - In this case the results will be sorted in descending order based on the timestamp of the last post in the conversation.
+   The whereClause specifies the condition the results must meet.
+    Which means that the query will only return threads where the number of replies is equal to zero.  -->
+    <#case "unanswered">
+       <#assign whereClause = whereClause + " AND replies.count(*) = 0"/>
+       <#assign orderClause = "ORDER BY conversation.last_post_time DESC"/> 
+   <#break>
+
+   <#-- Questions with no solutions -->
+     <#case "unsolved">
+        <#assign whereClause = whereClause + " AND conversation.solved = false " /> <#--I added "AND conversation.solved = false" to the whereClause variable, here the query will only return threads that have NOT been marked as solved in the conversation table-->
+        <#assign orderClause = "ORDER BY conversation.last_post_time DESC " /> <#--the results will be sorted in descending order based on the value of the last_post_time column-->
+        <#break> 
    <#default>
        <#assign orderClause = "ORDER BY conversation.last_post_time DESC " />
    <#break>
@@ -76,6 +107,14 @@
                    <option value="views" <#if sorting == 'views'>selected</#if>>${text.format("theme-lib.community-activity.views")}</option>
                    <option value="replies" <#if sorting == 'replies'>selected</#if>>${text.format("theme-lib.community-activity.replies")}</option>
                    <option value="kudos" <#if sorting == 'kudos'>selected</#if>>${text.format("theme-lib.community-activity.kudos")}</option>
+                  <#--Added post_time  -->
+                   <option value="post_time" <#if sorting == 'post_time'>selected</#if>>Post time</option>
+                  <#--Added lowest_Kudos  -->
+                   <option value="lowest_kudos" <#if sorting == 'lowest_kudos'>selected</#if>>Lowest Kudos</option>
+                  <#--Added unanswered  -->
+                    <option value="" <#if sorting == 'unanswered'>selected</#if>>Unanswered</option>
+                  <#--Added unsolved -->
+                    <option value="unsolved" <#if sorting == 'unsolved'>selected</#if>>Unsolved</option>
                </select>
                <#if page.interactionStyle=="idea">
                  <@component id="custom.idea.status.label" />
@@ -149,7 +188,8 @@
        <#assign msg_status_txt = "theme-lib.general.thread-floated" />
    </#if>
    <#if msg.conversation.solved>
-       <#assign solved = "custom-thread-solved" />
+        <#--I changed the class name for solved threads to "resolved" -->
+       <#assign solved = "resolved" />
        <#assign msg_status_icon = "custom-thread-solved" />
        <#assign msg_status_txt = "theme-lib.general.thread-solved" />
    </#if>
